@@ -15,7 +15,7 @@ const content = {
     },
     es: {
         about: 'Acerca de',
-        aboutText: 'Learn WG es una plataforma educativa innovadora que te conecta con los mejores cursos en línea para aprender idiomas y tecnología.',
+        aboutText: 'Learn WG te conecta con los mejores cursos en línea para aprender idiomas y tecnología.',
         languageCourses: 'Cursos de Idiomas',
         languageCoursesText: 'Ofrecemos una variedad de cursos como inglés, francés, alemán, y más, diseñados para todos los niveles.',
         techCourses: 'Cursos TI',
