@@ -25,8 +25,28 @@ const content = {
     },
 };
 
-hamburger.addEventListener('click', () => {
-    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+const toggleMenu = () => {
+    const willOpen = navMenu.style.display !== 'flex';
+    navMenu.style.display = willOpen ? 'flex' : 'none';
+    hamburger.classList.toggle('active', willOpen);
+    hamburger.setAttribute('aria-expanded', String(willOpen));
+};
+
+hamburger.addEventListener('click', toggleMenu);
+hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+    }
+});
+
+// Close nav on link click (mobile)
+navMenu.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+        navMenu.style.display = 'none';
+        hamburger.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
 });
 
 const revealSections = () => {
@@ -49,8 +69,14 @@ languageToggle.addEventListener('click', () => {
     document.querySelector('#language-courses p').textContent = content[currentLang].languageCoursesText;
     document.querySelector('#tech-courses h2').textContent = content[currentLang].techCourses;
     document.querySelector('#tech-courses p').textContent = content[currentLang].techCoursesText;
-    document.querySelector('#language-tutor h2').textContent = content[currentLang].languageTutor;
-    document.querySelector('#language-tutor p').textContent = content[currentLang].tutorText;
+    const hablaHeader = document.querySelector('#habla-ya h2');
+    const hablaParagraph = document.querySelector('#habla-ya p');
+    if (hablaHeader && hablaParagraph) {
+        hablaHeader.textContent = currentLang === 'en' ? 'Habla Ya' : 'Habla Ya';
+        hablaParagraph.textContent = currentLang === 'en'
+            ? 'Discover Habla Ya, an interactive AI tool designed to help you practice languages in real-time. Customize your learning experience and achieve your linguistic goals faster.'
+            : 'Descubre Habla Ya, una herramienta de IA interactiva diseñada para ayudarte a practicar idiomas en tiempo real. Personaliza tu aprendizaje y alcanza tus metas lingüísticas más rápido.';
+    }
 });
 
 window.addEventListener('scroll', revealSections);

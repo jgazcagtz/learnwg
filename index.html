@@ -10,17 +10,17 @@
 <body>
     <header>
         <h1 id="main-title">Learn WG</h1>
-        <button id="language-toggle" class="language-btn">Spanish</button>
-        <div class="hamburger" id="hamburger">
+        <button id="language-toggle" class="language-btn">Español</button>
+        <div class="hamburger" id="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu" tabindex="0">
             <div></div>
             <div></div>
             <div></div>
         </div>
-        <nav id="nav-menu">
+        <nav id="nav-menu" role="navigation" aria-label="Primary">
             <a href="#about">About</a>
             <a href="#language-courses">Language Courses</a>
             <a href="#tech-courses">Tech Courses</a>
-            <a href="#language-tutor">Language Tutor™</a>
+            <a href="#habla-ya">Habla Ya</a>
         </nav>
     </header>
 
@@ -39,16 +39,16 @@
         <p>Learn high-demand technical skills like web development, data analysis, and cybersecurity with industry experts.</p>
     </section>
 
-    <section id="language-tutor">
-        <h2>Language Tutor™</h2>
-        <p>Discover our Language Tutor™, an interactive tool designed to help you practice languages in real-time using AI. Customize your learning experience and achieve your linguistic goals faster.</p>
-        <a href="https://languagetutor.vercel.app/" target="_blank" class="cta-btn">Visit Language Tutor™</a>
+    <section id="habla-ya">
+        <h2>Habla Ya</h2>
+        <p>Discover Habla Ya, an interactive AI tool designed to help you practice languages in real-time. Customize your learning experience and achieve your linguistic goals faster.</p>
+        <a href="https://hablaya.site" target="_blank" rel="noopener noreferrer" class="cta-btn">Visit Habla Ya</a>
     </section>
 
-    <a class="whatsapp-btn" href="https://wa.me/5533355687?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Learn%20WG" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    <a class="whatsapp-btn" href="https://wa.me/5533355687?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Learn%20WG" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" loading="lazy">
         </a>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
