@@ -1,53 +1,209 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn WG</title>
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Learn WG is an online education platform offering curated language and tech courses, plus Habla Ya â€” AI-powered language practice.">
+    <meta name="theme-color" content="#FFD700">
+    <title>Learn WG â€” Online Language & Tech Courses</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFD700'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='700' font-size='28' fill='%230f172a'%3ELW%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1 id="main-title">Learn WG</h1>
-        <button id="language-toggle" class="language-btn">Español</button>
-        <div class="hamburger" id="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu" tabindex="0">
-            <div></div>
-            <div></div>
-            <div></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#top" aria-label="Learn WG home">
+                <span class="brand-mark" aria-hidden="true">LW</span>
+                <span class="brand-text">Learn WG</span>
+            </a>
+
+            <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+                <a href="#about" data-i18n="navAbout">About</a>
+                <a href="#language-courses" data-i18n="navLang">Languages</a>
+                <a href="#tech-courses" data-i18n="navTech">Tech</a>
+                <a href="#habla-ya" data-i18n="navHabla">Habla Ya</a>
+            </nav>
+
+            <div class="header-actions">
+                <button id="language-toggle" class="language-btn" type="button" aria-label="Switch language to Spanish">
+                    <span aria-hidden="true">ES</span>
+                    <span class="language-btn-text" data-i18n="langButton">EspaÃ±ol</span>
+                </button>
+                <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
-        <nav id="nav-menu" role="navigation" aria-label="Primary">
-            <a href="#about">About</a>
-            <a href="#language-courses">Language Courses</a>
-            <a href="#tech-courses">Tech Courses</a>
-            <a href="#habla-ya">Habla Ya</a>
-        </nav>
     </header>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Learn WG is an innovative educational platform connecting you with the best online courses for mastering languages and technology.</p>
-    </section>
+    <main id="main">
+        <section class="hero" id="top">
+            <div class="container hero-inner">
+                <span class="eyebrow" data-i18n="heroEyebrow">Online Education Platform</span>
+                <h1 data-i18n="heroTitle">Learn languages and tech, the smart way.</h1>
+                <p class="lead" data-i18n="heroSub">Curated online courses and AI-powered language practice with Habla Ya â€” built for real-world fluency and in-demand digital skills.</p>
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="#language-courses" data-i18n="heroCtaPrimary">Explore Courses</a>
+                    <a class="btn btn-ghost" href="#habla-ya" data-i18n="heroCtaSecondary">Try Habla Ya</a>
+                </div>
+                <ul class="hero-stats" aria-label="Platform highlights">
+                    <li>
+                        <strong>8+</strong>
+                        <span data-i18n="statLangs">Languages</span>
+                    </li>
+                    <li>
+                        <strong>20+</strong>
+                        <span data-i18n="statCourses">Tech Courses</span>
+                    </li>
+                    <li>
+                        <strong>24/7</strong>
+                        <span data-i18n="statSupport">AI Practice</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    <section id="language-courses">
-        <h2>Language Courses</h2>
-        <p>We offer a variety of language courses, including Spanish, English, French, Russian, German, Chinese, Korean and more, tailored for all skill levels.</p>
-    </section>
+        <section id="about" class="section">
+            <div class="container section-narrow">
+                <span class="eyebrow" data-i18n="aboutEyebrow">About</span>
+                <h2 data-i18n="aboutTitle">About Us</h2>
+                <p class="lead" data-i18n="aboutText">Learn WG is an innovative educational platform connecting you with the best online courses for mastering languages and technology â€” taught by industry experts and designed for real progress.</p>
+            </div>
+        </section>
 
-    <section id="tech-courses">
-        <h2>Tech Courses</h2>
-        <p>Learn high-demand technical skills like web development, data analysis, and cybersecurity with industry experts.</p>
-    </section>
+        <section id="language-courses" class="section section-alt">
+            <div class="container">
+                <header class="section-head">
+                    <span class="eyebrow" data-i18n="langEyebrow">Languages</span>
+                    <h2 data-i18n="langTitle">Language Courses</h2>
+                    <p class="lead" data-i18n="langText">A growing catalog of language courses for every level â€” from absolute beginner to confident speaker.</p>
+                </header>
 
-    <section id="habla-ya">
-        <h2>Habla Ya</h2>
-        <p>Discover Habla Ya, an interactive AI tool designed to help you practice languages in real-time. Customize your learning experience and achieve your linguistic goals faster.</p>
-        <a href="https://hablaya.site" target="_blank" rel="noopener noreferrer" class="cta-btn">Visit Habla Ya</a>
-    </section>
+                <div class="card-grid" role="list">
+                    <article class="card" role="listitem">
+                        <span class="card-icon" aria-hidden="true">ES</span>
+                        <h3 data-i18n="langCardSpanish">Spanish</h3>
+                        <p data-i18n="langCardLevel">Beginner â€” Advanced</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon" aria-hidden="true">EN</span>
+                        <h3 data-i18n="langCardEnglish">English</h3>
+                        <p data-i18n="langCardLevel">Beginner â€” Advanced</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon" aria-hidden="true">FR</span>
+                        <h3 data-i18n="langCardFrench">French</h3>
+                        <p data-i18n="langCardLevel">Beginner â€” Advanced</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon" aria-hidden="true">DE</span>
+                        <h3 data-i18n="langCardGerman">German</h3>
+                        <p data-i18n="langCardLevel">Beginner â€” Advanced</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon" aria-hidden="true">RU</span>
+                        <h3 data-i18n="langCardRussian">Russian</h3>
+                        <p data-i18n="langCardLevel">Beginner â€” Advanced</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon" aria-hidden="true">ZH</span>
+                        <h3 data-i18n="langCardChinese">Chinese</h3>
+                        <p data-i18n="langCardLevel">Beginner â€” Advanced</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon" aria-hidden="true">KO</span>
+                        <h3 data-i18n="langCardKorean">Korean</h3>
+                        <p data-i18n="langCardLevel">Beginner â€” Advanced</p>
+                    </article>
+                    <article class="card card-more" role="listitem">
+                        <span class="card-icon" aria-hidden="true">+</span>
+                        <h3 data-i18n="langCardMore">And more</h3>
+                        <p data-i18n="langCardMoreSub">New languages added regularly</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-courses" class="section">
+            <div class="container">
+                <header class="section-head">
+                    <span class="eyebrow" data-i18n="techEyebrow">Tech</span>
+                    <h2 data-i18n="techTitle">Tech Courses</h2>
+                    <p class="lead" data-i18n="techText">Build the in-demand technical skills employers actually look for â€” taught by working professionals.</p>
+                </header>
+
+                <div class="card-grid card-grid-tech" role="list">
+                    <article class="card" role="listitem">
+                        <span class="card-icon card-icon-tech" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </span>
+                        <h3 data-i18n="techCardWebTitle">Web Development</h3>
+                        <p data-i18n="techCardWebSub">HTML, CSS, JavaScript, modern frameworks.</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon card-icon-tech" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        </span>
+                        <h3 data-i18n="techCardDataTitle">Data Analysis</h3>
+                        <p data-i18n="techCardDataSub">Spreadsheets, SQL, Python and data viz.</p>
+                    </article>
+                    <article class="card" role="listitem">
+                        <span class="card-icon card-icon-tech" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </span>
+                        <h3 data-i18n="techCardCyberTitle">Cybersecurity</h3>
+                        <p data-i18n="techCardCyberSub">Fundamentals, threats, defense and ethics.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="habla-ya" class="section habla-section">
+            <div class="container habla-inner">
+                <div class="habla-copy">
+                    <span class="eyebrow eyebrow-dark">Habla Ya</span>
+                    <h2 data-i18n="hablaTitle">Practice languages in real-time with AI.</h2>
+                    <p class="lead" data-i18n="hablaText">Habla Ya is an interactive AI tutor that helps you build speaking confidence â€” anytime, anywhere. Customize your learning experience and reach your goals faster.</p>
+                    <a class="btn btn-primary" href="https://hablaya.cloud" target="_blank" rel="noopener noreferrer" data-i18n="hablaCta">Visit Habla Ya</a>
+                </div>
+                <div class="habla-visual" aria-hidden="true">
+                    <div class="chat-bubble chat-bubble-a">Â¡Hola! Â¿CÃ³mo estÃ¡s?</div>
+                    <div class="chat-bubble chat-bubble-b">I'm great â€” let's practice!</div>
+                    <div class="chat-bubble chat-bubble-c">Bonjour, comment Ã§a va ?</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark" aria-hidden="true">LW</span>
+                <span>Learn WG</span>
+            </div>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="#about" data-i18n="navAbout">About</a>
+                <a href="#language-courses" data-i18n="navLang">Languages</a>
+                <a href="#tech-courses" data-i18n="navTech">Tech</a>
+                <a href="#habla-ya" data-i18n="navHabla">Habla Ya</a>
+            </nav>
+            <p class="footer-copy">
+                &copy; <span id="footer-year"></span> Learn WG. <span data-i18n="footerNote">All rights reserved.</span>
+            </p>
+        </div>
+    </footer>
 
     <a class="whatsapp-btn" href="https://wa.me/5533355687?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20Learn%20WG" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" loading="lazy">
-        </a>
+        <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M16.003 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.26.59 4.46 1.71 6.4L3.2 28.8l6.55-1.71a12.74 12.74 0 0 0 6.25 1.62h.01c7.07 0 12.8-5.73 12.8-12.8s-5.74-12.71-12.81-12.71zm0 23.31h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-3.88 1.02 1.04-3.78-.25-.39a10.55 10.55 0 0 1-1.62-5.65c0-5.84 4.75-10.59 10.6-10.59 2.83 0 5.49 1.1 7.49 3.1a10.5 10.5 0 0 1 3.1 7.49c0 5.83-4.76 10.51-10.68 10.51zm5.81-7.93c-.32-.16-1.89-.93-2.18-1.03-.29-.11-.5-.16-.72.16-.21.32-.83 1.04-1.02 1.25-.19.21-.37.24-.69.08-.32-.16-1.34-.49-2.55-1.57a9.6 9.6 0 0 1-1.77-2.2c-.18-.32-.02-.49.14-.65.14-.14.32-.37.48-.56.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.72-1.74-.99-2.38-.26-.62-.53-.54-.72-.55l-.61-.01a1.17 1.17 0 0 0-.85.4c-.29.32-1.11 1.09-1.11 2.65 0 1.56 1.14 3.07 1.3 3.28.16.21 2.25 3.44 5.45 4.83.76.33 1.36.52 1.82.66.76.24 1.46.21 2.01.13.61-.09 1.89-.77 2.16-1.52.27-.74.27-1.38.19-1.52-.08-.13-.29-.21-.61-.37z"/>
+        </svg>
+        <span class="visually-hidden">WhatsApp</span>
+    </a>
 
     <script src="script.js" defer></script>
 <!-- Zentix Chatbot: LearnWG -->
