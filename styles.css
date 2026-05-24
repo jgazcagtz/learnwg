@@ -108,7 +108,7 @@ button {
 }
 
 :focus-visible {
-    outline: 3px solid var(--color-primary);
+    outline: 3px solid var(--color-accent);
     outline-offset: 2px;
     border-radius: 4px;
 }
@@ -205,6 +205,12 @@ button {
     border: 1px solid transparent;
     user-select: none;
     white-space: nowrap;
+}
+
+.btn-lg {
+    padding: 14px 28px;
+    font-size: 1.05rem;
+    min-height: 50px;
 }
 
 .btn-primary {
@@ -307,12 +313,29 @@ button {
     font-weight: 500;
     color: var(--color-text-muted);
     transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
+    position: relative;
 }
 
 .primary-nav a:hover,
 .primary-nav a:focus-visible {
     color: var(--color-text);
     background-color: var(--color-surface);
+}
+
+.primary-nav a.is-active {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.primary-nav a.is-active::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: 1px;
 }
 
 .header-actions {
@@ -404,37 +427,39 @@ button {
         top: var(--header-height);
         left: 0;
         right: 0;
+        bottom: 0;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        padding: var(--space-3) clamp(1rem, 4vw, 2rem) var(--space-4);
+        padding: var(--space-3) clamp(1rem, 4vw, 2rem);
         background-color: var(--color-bg);
-        border-bottom: 1px solid var(--color-border);
-        box-shadow: var(--shadow);
-        transform: translateY(-12px);
-        opacity: 0;
-        pointer-events: none;
-        transition: transform var(--duration) var(--ease),
-                    opacity var(--duration) var(--ease);
+        border-top: 1px solid var(--color-border);
+        box-shadow: var(--shadow-lg);
+        transform: translateX(100%);
+        transition: transform 300ms var(--ease);
+        overflow-y: auto;
+        z-index: 40;
     }
 
     .primary-nav.is-open {
         display: flex;
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
+        transform: translateX(0);
     }
 
     .primary-nav a {
-        padding: 14px 12px;
+        padding: 16px 12px;
         border-radius: var(--radius-sm);
-        font-size: 1rem;
+        font-size: 1.05rem;
         color: var(--color-text);
         border-bottom: 1px solid var(--color-border);
     }
 
     .primary-nav a:last-child {
         border-bottom: 0;
+    }
+
+    .primary-nav a.is-active::after {
+        bottom: 8px;
     }
 }
 
@@ -498,6 +523,7 @@ button {
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
+    text-align: center;
 }
 
 .hero-stats strong {
@@ -614,6 +640,104 @@ button {
     font-size: 1.5rem;
 }
 
+/* Interactive cards */
+.card-interactive {
+    cursor: pointer;
+    position: relative;
+}
+
+.card-interactive::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    pointer-events: none;
+    transition: box-shadow var(--duration) var(--ease);
+}
+
+.card-interactive:hover::after {
+    box-shadow: inset 0 0 0 2px var(--color-accent);
+}
+
+.card-interactive:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+.card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-accent-strong);
+    margin-top: auto;
+    padding-top: var(--space-2);
+    transition: gap var(--duration) var(--ease), color var(--duration) var(--ease);
+}
+
+.card-interactive:hover .card-cta {
+    gap: 8px;
+    color: var(--color-primary);
+}
+
+/* ============================================================
+   Testimonials
+   ============================================================ */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+}
+
+.testimonial-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.testimonial-card::before {
+    content: '\201C';
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--color-accent);
+    font-family: Georgia, serif;
+    opacity: 0.5;
+}
+
+.testimonial-card p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text);
+    margin-bottom: var(--space-4);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.testimonial-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+.testimonial-role {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
 /* ============================================================
    Habla Ya
    ============================================================ */
@@ -647,6 +771,34 @@ button {
 
 .habla-copy .btn-primary:hover {
     background-color: var(--color-accent-strong);
+}
+
+.habla-features {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-5) 0 var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.habla-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.habla-features li::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    flex-shrink: 0;
 }
 
 .habla-visual {
@@ -691,6 +843,42 @@ button {
 @keyframes bubble-float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
+}
+
+/* ============================================================
+   CTA Final
+   ============================================================ */
+.section-cta {
+    background:
+        radial-gradient(ellipse at 50% 50%, rgba(255, 215, 0, 0.12), transparent 70%),
+        var(--color-surface);
+    text-align: center;
+}
+
+.cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    max-width: 640px;
+    margin-inline: auto;
+}
+
+.cta-inner h2 {
+    text-align: center;
+}
+
+.cta-inner .lead {
+    text-align: center;
+    margin-inline: auto;
+}
+
+.cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
 }
 
 /* ============================================================
@@ -759,7 +947,7 @@ button {
     align-items: center;
     justify-content: center;
     box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35);
-    z-index: 60;
+    z-index: 45;
     transition: transform var(--duration) var(--ease),
                 background-color var(--duration) var(--ease),
                 box-shadow var(--duration) var(--ease);
@@ -778,12 +966,60 @@ button {
 /* ============================================================
    Breakpoints
    ============================================================ */
+@media (max-width: 400px) {
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+    }
+
+    .hero-stats li {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-3) var(--space-4);
+    }
+
+    .hero-stats li strong {
+        font-size: 1.2rem;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-grid-tech {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 599px) {
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-2);
+    }
+
+    .hero-stats li {
+        padding: var(--space-3);
+    }
+}
+
 @media (min-width: 600px) {
     .habla-visual {
         display: block;
     }
+
     .habla-inner {
         grid-template-columns: 1.1fr 1fr;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .testimonial-grid .testimonial-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        justify-self: center;
     }
 }
 
@@ -810,6 +1046,16 @@ button {
 
     .footer-copy {
         margin-left: auto;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .testimonial-grid .testimonial-card:last-child {
+        grid-column: auto;
+        max-width: none;
+        justify-self: auto;
     }
 }
 
