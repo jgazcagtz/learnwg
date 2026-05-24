@@ -67,7 +67,13 @@
             ctaText: 'Join thousands of students building real skills in languages and technology.',
             ctaPrimary: 'Browse Courses',
             ctaSecondary: 'Contact Us',
-            footerNote: 'All rights reserved.'
+            ctaText: 'Pick a course, talk to a real human on WhatsApp, and get started in minutes.',
+            heroTrust: 'No credit card required to explore the catalog.',
+            footerNote: 'All rights reserved.',
+            // Used by JS for aria-labels (not bound to data-i18n nodes directly).
+            menuOpen: 'Open menu',
+            menuClose: 'Close menu',
+            langSwitch: 'Switch language to Spanish'
         },
         es: {
             navAbout: 'Nosotros',
@@ -130,12 +136,25 @@
             ctaText: 'Únete a miles de estudiantes desarrollando habilidades reales en idiomas y tecnología.',
             ctaPrimary: 'Explorar Cursos',
             ctaSecondary: 'Contáctanos',
-            footerNote: 'Todos los derechos reservados.'
+            ctaText: 'Elige un curso, habla con una persona real por WhatsApp y empieza en minutos.',
+            heroTrust: 'Sin tarjeta de crédito para explorar el catálogo.',
+            footerNote: 'Todos los derechos reservados.',
+            menuOpen: 'Abrir menú',
+            menuClose: 'Cerrar menú',
+            langSwitch: 'Cambiar idioma a Inglés'
         }
     };
 
+    // Tracks the active language across modules so handlers can localise
+    // dynamic aria-labels without re-querying the DOM.
+    let currentLang = 'en';
+
     const STORAGE_KEY = 'learnwg.lang';
     const MOBILE_BREAKPOINT = 768;
+    // WhatsApp business number in international format (no `+`, no spaces).
+    // Country code 52 = Mexico, area code 33 = Guadalajara.
+    const WHATSAPP_NUMBER = '525533355687';
+    const WHATSAPP_BASE_URL = 'https://wa.me/' + WHATSAPP_NUMBER;
 
     // ---------- Helpers ----------
     function getStoredLang() {
@@ -161,6 +180,8 @@
     // ---------- i18n apply ----------
     function applyTranslations(lang) {
         const dict = i18n[lang] || i18n.en;
+        currentLang = i18n[lang] ? lang : 'en';
+
         const nodes = document.querySelectorAll('[data-i18n]');
         nodes.forEach((node) => {
             const key = node.getAttribute('data-i18n');
@@ -170,18 +191,27 @@
             }
         });
 
-        document.documentElement.setAttribute('lang', lang);
+        document.documentElement.setAttribute('lang', currentLang);
 
         const langBtn = document.getElementById('language-toggle');
         if (langBtn) {
-            const targetLabel = lang === 'en'
-                ? 'Switch language to Spanish'
-                : 'Switch language to English';
-            langBtn.setAttribute('aria-label', targetLabel);
-
+            langBtn.setAttribute('aria-label', dict.langSwitch);
             const flag = langBtn.querySelector('span[aria-hidden="true"]');
-            if (flag) flag.textContent = lang === 'en' ? 'ES' : 'EN';
+            if (flag) flag.textContent = currentLang === 'en' ? 'ES' : 'EN';
         }
+
+        // Sync hamburger aria-label with current language and open state.
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('primary-nav');
+        if (hamburger && navMenu) {
+            const isOpen = navMenu.classList.contains('is-open');
+            hamburger.setAttribute('aria-label', isOpen ? dict.menuClose : dict.menuOpen);
+        }
+    }
+
+    function t(key) {
+        const dict = i18n[currentLang] || i18n.en;
+        return dict[key] || (i18n.en[key] || '');
     }
 
     // ---------- Nav drawer ----------
@@ -194,14 +224,16 @@
             navMenu.classList.add('is-open');
             hamburger.classList.add('is-open');
             hamburger.setAttribute('aria-expanded', 'true');
-            hamburger.setAttribute('aria-label', 'Close menu');
+            hamburger.setAttribute('aria-label', t('menuClose'));
+            document.body.classList.add('is-nav-open');
         };
 
         const close = () => {
             navMenu.classList.remove('is-open');
             hamburger.classList.remove('is-open');
             hamburger.setAttribute('aria-expanded', 'false');
-            hamburger.setAttribute('aria-label', 'Open menu');
+            hamburger.setAttribute('aria-label', t('menuOpen'));
+            document.body.classList.remove('is-nav-open');
         };
 
         const toggle = () => {
@@ -335,9 +367,10 @@
         cards.forEach((card) => {
             const handler = () => {
                 const course = card.dataset.course;
-                if (course) {
-                    window.open('https://wa.me/5533355687?text=Hi%2C%20I%27m%20interested%20in%20the%20' + encodeURIComponent(course) + '%20course', '_blank', 'noopener');
-                }
+                if (!course) return;
+                const message = 'Hi, I\'m interested in the ' + course + ' course';
+                const url = WHATSAPP_BASE_URL + '?text=' + encodeURIComponent(message);
+                window.open(url, '_blank', 'noopener,noreferrer');
             };
             card.addEventListener('click', handler);
             card.addEventListener('keydown', (e) => {
@@ -366,6 +399,11 @@
         setupHeaderScroll();
         setupCardClicks();
         setupFooterYear();
+
+        // Ensure hamburger aria-label is localised even though the drawer
+        // starts closed (setupNav doesn't touch it until the user interacts).
+        const hamburger = document.getElementById('hamburger');
+        if (hamburger) hamburger.setAttribute('aria-label', t('menuOpen'));
     }
 
     if (document.readyState === 'loading') {
